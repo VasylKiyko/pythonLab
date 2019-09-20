@@ -1,6 +1,6 @@
 import random
 
-
+#create my own fuction to fill the list))
 def fill_list(size):
     List = []
     i = 0
@@ -9,7 +9,7 @@ def fill_list(size):
         i = i + 1
     return List
 
-
+#Calculate summ of elements in list
 def list_sum(List):
     sum = 0
     for x in List:
