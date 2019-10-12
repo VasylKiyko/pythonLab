@@ -1,13 +1,9 @@
 import random
 
-#create my own fuction to fill the list))
+#create my own function to fill the list))
 def fill_list(size):
-    List = []
-    i = 0
-    while i < size:
-        List.append(random.randint(0, 100))
-        i = i + 1
-    return List
+    return [random.randint(0, 100) for x in range(size)]
+
 
 #Calculate summ of elements in list
 def list_sum(List):
@@ -16,9 +12,9 @@ def list_sum(List):
         sum = sum + x
     return sum
 
-
-number = input("Enter size of list: ")
-List = fill_list(int(number))
-Sum = list_sum(List)
-avg = Sum / float(number)
-print("Sum of your list`s elements is " + str(Sum) + " and it`s average is " + str(avg))
+if __name__ == '__main__':
+    number = input("Enter size of list: ")
+    List = fill_list(int(number))
+    Sum = list_sum(List)
+    avg = Sum / float(number)
+    print("Sum of your list`s elements is " + str(Sum) + " and it`s average is " + str(avg))
