@@ -4,16 +4,16 @@
     L - Liskov
     I - interface segregation
     D - dependancy inversion
-    Тут я відтворив принцип S так : у мене є 3 класи, кожен з яких має
-    розподілені умови: 1 створює фігуру, 2 малює її, 3 проводить геометричні обрахунки.
-    Принцип О - тут він відображений наприклад у тому, що для обрахунку площі фігури, нам
-    не потрібно перевіряти тип фігури і під неї писати формулу обрахунку. Тут кожен клас фігури
+    Тут я відтворив принцип S так : у мене є 4 класи, кожен з яких має
+    розподілені умови: 1 створює фігуру, 2 малює її, 3 s 4 проводять геометричні обрахунки.
+    Принцип О - тут він відображений наприклад у тому, що для малювання фігури, нам
+    не потрібно перевіряти тип фігури і під неї писати формулу малювання. Тут кожен клас фігури
     сам відповідає за свою формулу.
-    Принцип L - пов'язаний з принципом O, ми можемо доступатись до функцій класу фігура через класи
-    Трикутник та Сфера.
+    Принцип L - пов'язаний з принципом O, ми можемо доступатись до функцій класу drawFigure об'єкти
+    класів DrawTriangle та DrawSphere
     Принцип I - класу Трикутник не потрібно реалізовувати функцію пошуку об'єму.
     Принцип D - усі класи, і Трикутник , і Сфера залежать від абстракцій а
-    не від конкретних реалзіацій
+    не від конкретних реалізацій
     """
 
 
@@ -42,6 +42,7 @@ class DrawFigure:
     def draw(self):
         pass
 
+#####################################################
 
 class Triangle:
     A = B = C = (0, 0)
@@ -54,14 +55,25 @@ class Triangle:
     def getPosition(self):
         print("Three points -- {0} , {1}, {2}".format(self.A, self.B, self.C))
 
+
+class TriangleGeometry:
+    def __init__(self, triangle):
+        self.triangle = triangle
+
     def calcS(self):
-        pass
+        pass    # do some math
 
     def caclP(self):
-        pass
+        pass    # do some math
+
+
+class TriangleDraw:
+    def __init__(self, triangle):
+        self.triangle = triangle
 
     def draw(self):
-        print("I`m a triangle!")
+        if self.triangle:
+            print('I`m a triangle')
 
 
 class Sphere:
@@ -75,20 +87,31 @@ class Sphere:
     def getPosition(self):
         print("Center -- {0} and radius -- {1}".format(self.center, self.radius))
 
+
+class SphereGeometry:
+    def __init__(self, sphere):
+        self.sphere = sphere
+
     def calcV(self):
-        pass
+        pass  # do some math
+
+
+class SphereDraw:
+    def __init__(self, sphere):
+        self.sphere = sphere
 
     def draw(self):
-        print("I`m a circle!")
+        if self.sphere:
+            print('I`m a sphere!')
 
 
 if __name__ == '__main__':
     fig1 = Triangle()
     fig2 = Triangle()
     fig3 = Sphere()
-    fig1.setPosition((0, 0), (3, 5), (3, 7))
-    fig2.setPosition((0, -1), (7, 5), (3, 4))
-    fig3.setPosition((0, 0), 4)
-    lst = [fig1, fig2, fig3]
+    fig1_draw = TriangleDraw(fig1)
+    fig2_draw = TriangleDraw(fig2)
+    fig3_draw = SphereDraw(fig3)
+    lst = [fig1_draw, fig2_draw, fig3_draw]
     for i in lst:
         i.draw()
