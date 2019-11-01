@@ -1,5 +1,6 @@
 def word_stat(words):
-    """"""
+    """функція, яка записує у словник усі слвоа файлу
+    у виді "слово": кількість входжень"""
     word_map = {}
     for word in words:
         if word not in word_map:
@@ -10,6 +11,8 @@ def word_stat(words):
 
 
 def count_words(name):
+    """функція, що працює з наповненням файлу. Повертає кількість слів у файлі
+    та результат виклику функції підрахунку статистики слів"""
     with open(name, 'r') as f:
         text = f.read()
         word_list = text.split()
